@@ -1,0 +1,2 @@
+En este proyecto voy a resolver un desafío que me dieron para resolver durante la cursada de una materia de programación,
+la consigna en concreto se encuentra en el pdf. El fin de esto es interiorizarme con los conceptos precentes de git, y lograr resolver el desafío!
