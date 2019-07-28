@@ -24,16 +24,20 @@ public class CapituloUno {
 					for (int l = 0; l < 10; l++) {
 						for (int m = 0; m < 10; m++) {
 							for (int n = 0; n < 10; n++) {
-//								String stringNro = circulo6[i] + circulo5[j] + circulo4[k] + circulo3[l] + circulo2[m]
-//										+ circulo1[n];
-								String stringNro = circulo1[n] + circulo2[m] + circulo3[l] + circulo4[k] + circulo5[j]
-										+ circulo6[i];
-								;
-								if (i + j +k +l+m+n == 10 &&  esNroVampiro(stringNro,resultado)) {
-								System.out.println("Encontrado!");
+								String stringNro1 = circulo6[i] + circulo5[j] + circulo4[k] + circulo3[l] + circulo2[m]
+										+ circulo1[n];
+								String stringNro2 = circulo6[10 - i - 1] + circulo5[10 - j - 1] + circulo4[10 - k - 1]
+										+ circulo3[10 - l - 1] + circulo2[10 - m - 1] + circulo1[10 - n - 1];
+//								String stringNro = circulo1[n] + circulo2[m] + circulo3[l] + circulo4[k] + circulo5[j]
+//										+ circulo6[i];
+									if (i + j + k + l + m + n == 10 && esNroVampiro(stringNro1, resultado)) {
+										System.out.println("Encontrado!");
+									}
+									if (i + j + k + l + m + n == 10 && esNroVampiro(stringNro2, resultado)) {
+										System.out.println("Encontrado!");
+
 								}
-							}
-						}
+							}						}
 					}
 				}
 			}
