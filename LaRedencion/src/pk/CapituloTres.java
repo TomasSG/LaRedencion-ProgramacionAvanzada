@@ -1,7 +1,7 @@
 package pk;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
+import java.math.*;
 
 public class CapituloTres {
 
@@ -12,56 +12,25 @@ public class CapituloTres {
 	public static void main(String[] args) {
 		ArrayList<String> stringNro1 = FileManager.leerArchivo(PAHT_IN_3);
 		ArrayList<String> stringNro2 = FileManager.leerArchivo(PAHT_OUT_2);
-		BigInteger nro=new BigInteger(stringNro1.get(0)).or(new BigInteger(stringNro2.get(0)));
-		String stringNro = nro.toString();
-		int[] valores = new int[stringNro.length() / 3 + 1];
+		String secMalvodavo = new String(stringNro2.get(0));
+		String secEncriptado = new String(stringNro1.get(0));
+		char[] frase = new char[secEncriptado.length()/3 + 1];
+		ArrayList<String> resultado = new ArrayList<String>();
 		int j = 0;
-		for (int i = 0; i < stringNro.length(); i++) {
-			String nroParcial;
-			if(i == 0) {
-				nroParcial = "0" + String.valueOf(stringNro.charAt(i))
-				+ String.valueOf(stringNro.charAt(++i));				
+		for(int i = 0; i < secMalvodavo.length() && i < secMalvodavo.length(); i+=3) {
+			int nroMaldovado,nroEncriptado;
+			if(i==1437) {
+				nroMaldovado = Integer.parseInt(secMalvodavo.substring(i,1439));
+				nroEncriptado = Integer.parseInt(secEncriptado.substring(i,1439));
 			} else {
-				nroParcial = String.valueOf(stringNro.charAt(i)) + String.valueOf(stringNro.charAt(++i))
-				+ String.valueOf(stringNro.charAt(++i));
+			nroMaldovado = Integer.parseInt(secMalvodavo.substring(i,i+3));
+			nroEncriptado = Integer.parseInt(secEncriptado.substring(i,i+3));
 			}
-			valores[j] = Integer.valueOf(nroParcial);
-			j++;
+				
+			int res = (int) Math.abs(nroMaldovado ^ nroEncriptado);
+			frase[j++] = (char)res;
 		}
-		ArrayList<String> solucion = new ArrayList<String>();
-		for(int i = 0; i < valores.length; i++) {
-			solucion.add(Character.toString((char)valores[i]));
-		}
-		for(String s: solucion) {
-			System.out.print(s);
-		}
+		resultado.add(String.valueOf(frase));
+		FileManager.escribirArchivo(PAHT_OUT_3, resultado);
 	}
-	
-//	ArrayList<String> stringNro1 = FileManager.leerArchivo(PAHT_IN_3);
-//	ArrayList<String> stringNro2 = FileManager.leerArchivo(PAHT_OUT_2);
-//	BigInteger nro1=new BigInteger(stringNro1.get(0));
-//	BigInteger nro2=new BigInteger(stringNro2.get(0));
-//	String stringNro  = nro1.(nro2).toString();
-//	int[] valores = new int[stringNro.length() / 3 + 1];
-//	int j = 0;
-//	for (int i = 0; i < stringNro.length(); i++) {
-//		String nroParcial;
-//		if(i == 0) {
-//			nroParcial = "0" + String.valueOf(stringNro.charAt(i))
-//			+ String.valueOf(stringNro.charAt(++i));				
-//		} else {
-//			nroParcial = String.valueOf(stringNro.charAt(i)) + String.valueOf(stringNro.charAt(++i))
-//			+ String.valueOf(stringNro.charAt(++i));
-//		}
-//		valores[j] = Integer.valueOf(nroParcial);
-//		j++;
-//	}
-//	ArrayList<String> solucion = new ArrayList<String>();
-//	for(int i = 0; i < valores.length; i++) {
-//		solucion.add(Character.toString((char)valores[i]));
-//	}
-//	FileManager.escribirArchivo(PAHT_OUT_3, solucion);
-//	for(String s: solucion) {
-//		System.out.print(s);
-//	}
 }

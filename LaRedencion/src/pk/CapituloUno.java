@@ -28,8 +28,6 @@ public class CapituloUno {
 										+ circulo1[n];
 								String stringNro2 = circulo6[10 - i - 1] + circulo5[10 - j - 1] + circulo4[10 - k - 1]
 										+ circulo3[10 - l - 1] + circulo2[10 - m - 1] + circulo1[10 - n - 1];
-//								String stringNro = circulo1[n] + circulo2[m] + circulo3[l] + circulo4[k] + circulo5[j]
-//										+ circulo6[i];
 									if (i + j + k + l + m + n == 10 && esNroVampiro(stringNro1, resultado)) {
 										System.out.println("Encontrado!");
 									}
