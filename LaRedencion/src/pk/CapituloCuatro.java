@@ -9,8 +9,8 @@ import java.util.Scanner;
 public class CapituloCuatro {
 	private static final String PAHT_IN = "in/04.in";
 	private static final String PAHT_OUT = "out/capitulo4.out";
-	private static final int[][] matAdy = new int[104][104];
-	private static final String[] ciudades = new String[104];
+	private static final int[][] matAdy = new int[100][100];
+	private static final String[] ciudades = new String[100];
 	private int[] padres;
 
 	public CapituloCuatro(String path) {
@@ -18,11 +18,12 @@ public class CapituloCuatro {
 			Scanner sc = new Scanner(new File(path));
 			sc.useLocale(Locale.ENGLISH);
 			int cantLineas = sc.nextInt();
+			sc.nextLine();
 			for (int i = 0; i < cantLineas; i++) {
-				ciudades[i] = sc.next();
+				ciudades[i] = sc.nextLine();
 			}
 			while (sc.hasNext()) {
-				int fil = sc.nextInt(), col = sc.nextInt(), val =sc.nextInt();
+				int fil = sc.nextInt(), col = sc.nextInt(), val = sc.nextInt();
 				matAdy[fil][col] = val;
 				matAdy[col][fil] = val;
 			}
@@ -34,14 +35,15 @@ public class CapituloCuatro {
 	}
 
 	private void rellenarMatrizAdyacencia() {
-		for(int i = 0; i < matAdy.length; i++) {
-			for(int j = 0; j < matAdy.length; j++) {
-				if(matAdy[i][j] == 0) {
+		for (int i = 0; i < matAdy.length; i++) {
+			for (int j = 0; j < matAdy.length; j++) {
+				if (matAdy[i][j] == 0) {
 					matAdy[i][j] = Integer.MAX_VALUE;
+					matAdy[j][i] = Integer.MAX_VALUE;
 				}
 			}
 		}
-		
+
 	}
 
 	private boolean existe(int nodo, ArrayList<Integer> s) {
@@ -55,7 +57,7 @@ public class CapituloCuatro {
 
 	private int buscarMenorNodo(int[] d, ArrayList<Integer> s) {
 		int menorValor = Integer.MAX_VALUE;
-		int menorPos = 0;
+		int menorPos = -1;
 		for (int i = 0; i < d.length; i++) {
 			if (d[i] < menorValor && !existe(i, s)) {
 				menorValor = d[i];
@@ -80,14 +82,18 @@ public class CapituloCuatro {
 		conjuntoSolucion.add(nodoIni);
 		while (conjuntoSolucion.size() < matAdy.length) {
 			int menorNodo = buscarMenorNodo(costos, conjuntoSolucion);
-			conjuntoSolucion.add(menorNodo);
-			for (int i = 0; i < costos.length; i++) {
-				if (!existe(i, conjuntoSolucion)) {
-					if (existeOtroCamino(costos, menorNodo, i)) {
-						costos[i] = costos[menorNodo] + matAdy[menorNodo][i];
-						padres[i] = menorNodo;
+			if (menorNodo != -1) {
+				conjuntoSolucion.add(menorNodo);
+				for (int i = 0; i < costos.length; i++) {
+					if (!existe(i, conjuntoSolucion)) {
+						if (existeOtroCamino(costos, menorNodo, i)) {
+							costos[i] = costos[menorNodo] + matAdy[menorNodo][i];
+							padres[i] = menorNodo;
+						}
 					}
 				}
+			} else {
+				System.out.println("Paso por aca");
 			}
 		}
 		return costos;
