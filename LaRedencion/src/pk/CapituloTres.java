@@ -1,7 +1,6 @@
 package pk;
 
 import java.util.ArrayList;
-import java.math.*;
 
 public class CapituloTres {
 

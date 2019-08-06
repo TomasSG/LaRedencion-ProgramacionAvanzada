@@ -16,7 +16,6 @@ public class CapituloDos {
 
 	private static String calcularNroEn(int pos) {
 		BigInteger nroAnt = new BigInteger("-1"), nroAct =new BigInteger("6");
-		ArrayList<String> solucion = new ArrayList<String>();
 		if (pos == 0) {
 			return "0";
 		}
