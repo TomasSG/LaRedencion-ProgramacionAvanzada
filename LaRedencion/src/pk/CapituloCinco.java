@@ -1,6 +1,5 @@
 package pk;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,15 +21,15 @@ public class CapituloCinco {
 				nro = Integer.parseInt(nros[i]);
 			}
 			if(nro > 1476) {
-				resultado[i] = "#";
+				resultado[i] = "█";
 			}else {
 				resultado[i] = " ";
 			}
 		}
-		System.out.println(resultado.length);
+		System.out.println(nros.length);
 		try {
 			PrintWriter pw = new PrintWriter(new FileWriter(PAHT_OUT));
-			for(int i = 136; i < 250; i++) {
+			for(int i = 33; i < nros.length; i++) {
 				for(int j = 0; j < nros.length; j++) {
 					if(j%i==0) {
 						pw.print("\n");
@@ -39,7 +38,7 @@ public class CapituloCinco {
 						pw.print(resultado[j]);
 					}
 				}
-				pw.print("\n\n\n");
+				pw.print("\n----------------------------------------------------------------------------\n");
 			}
 			pw.close();
 		} catch (IOException e) {
